@@ -1,0 +1,20 @@
+[package]
+name = "rwc"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio = {version = "*", features = ["rt", "rt-multi-thread", "macros", "time", "fs", "io-util"]}
+tokio-stream = "*"
+futures = "*"
+clap = {version = "*", features = ["derive"]}
+clap_complete = "*"
+indicatif = "*"
+anyhow = "*"
+prettytable-rs = "*"
+
+[build-dependencies]
+clap = {version = "*", features = ["derive"]}
+clap_complete = "*"
