@@ -12,3 +12,30 @@ what I had archived are as follows:
 
 For the Chinese rustaceans, you could view [my blog](https://jedsek.xyz/posts/rust-clap/guide) about using clap-rs to write this project  
 Welcome to open issues :)
+
+## Build
+
+### Manually build
+
+```bash
+git clone https://github.com/jedsek/rust-wc
+cd rust-wc
+cargo build --release
+```
+
+The path of command is `rust-wc/target/release/rwc`, you could copy/move it to other place, or just `cargo run --release -- <args>`
+
+### Use release
+
+
+
+## Examples
+
+```
+cargo 
+┌────────────┬───────┬───────┬───────┬───────┬──────────────┐
+│ Path       │ Bytes │ Chars │ Words │ Lines │ Longest line │
+├────────────┼───────┼───────┼───────┼───────┼──────────────┤
+│ src/cli.rs │ 1212  │ 1212  │ 144   │ 41    │ 127          │
+└────────────┴───────┴───────┴───────┴───────┴──────────────┘
+```
