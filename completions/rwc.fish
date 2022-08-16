@@ -1,0 +1,7 @@
+complete -c rwc -s h -l help -d 'Print help information'
+complete -c rwc -s V -l version -d 'Print version information'
+complete -c rwc -s b -l bytes -d 'Print the count of bytes'
+complete -c rwc -s c -l chars -d 'Print the count of chars'
+complete -c rwc -s w -l words -d 'Print the count of words'
+complete -c rwc -s l -l lines -d 'Print the count of lines'
+complete -c rwc -s L -l longest-line -d 'Print the length of the longest line'

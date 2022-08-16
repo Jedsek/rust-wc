@@ -1,0 +1,42 @@
+#compdef rwc
+
+autoload -U is-at-least
+
+_rwc() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'-V[Print version information]' \
+'--version[Print version information]' \
+'*-b[Print the count of bytes]' \
+'*--bytes[Print the count of bytes]' \
+'*-c[Print the count of chars]' \
+'*--chars[Print the count of chars]' \
+'*-w[Print the count of words]' \
+'*--words[Print the count of words]' \
+'*-l[Print the count of lines]' \
+'*--lines[Print the count of lines]' \
+'*-L[Print the length of the longest line]' \
+'*--longest-line[Print the length of the longest line]' \
+'*::paths -- The path(s) you should provide:_files' \
+&& ret=0
+}
+
+(( $+functions[_rwc_commands] )) ||
+_rwc_commands() {
+    local commands; commands=()
+    _describe -t commands 'rwc commands' commands "$@"
+}
+
+_rwc "$@"
