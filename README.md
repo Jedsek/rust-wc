@@ -9,3 +9,6 @@ what I had archived are as follows:
 - Pretty tabled output
 - Colorful progress bar for reading files (It is useful when reading large file)
 - Completions for common shells [Look here for more infomation](/completions/)
+
+For the Chinese rustaceans, you could look my blog about using clap-rs to write this project  
+Welcome to open issues :)
