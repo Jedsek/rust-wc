@@ -31,7 +31,7 @@ impl Output {
         let mut contents = stream::iter(contents);
         while let Some((path, content)) = contents.next().await {
             let counts = vec![
-                cli.bytes.then_some(content.bytes().count()),
+                cli.bytes.then_some(content.len()),
                 cli.chars.then_some(content.chars().count()),
                 cli.words.then_some(content.split_whitespace().count()),
                 cli.lines.then_some(content.lines().count()),
@@ -39,7 +39,7 @@ impl Output {
                     .then_some(content.lines().map(|x| x.len()).max().unwrap_or(0)),
             ]
             .into_iter()
-            .filter_map(|x| x)
+            .flatten()
             .collect();
             paths_with_counts.insert(path, counts);
         }
