@@ -3,7 +3,13 @@ name = "rwc"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+# Reduce the size of binary file
+[profile.release]
+opt-level = 'z'
+lto = true
+codegen-units = 1
+panic = 'abort'
+incremental = false
 
 [dependencies]
 tokio = {version = "*", features = ["rt", "rt-multi-thread", "macros", "time", "fs", "io-util"]}
