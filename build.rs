@@ -15,37 +15,5 @@ fn main() -> Result<()> {
     generate_to(Elvish, &mut cmd, app_name, outdir)?;
     generate_to(PowerShell, &mut cmd, app_name, outdir)?;
 
-    // If you want to look the information, please uncomment following lines.
-
-    // let path = generate_to(Bash, &mut cmd, app_name, outdir)?;
-    // println!(
-    //     "cargo:warning={:012} completion file is generated: {:?}",
-    //     "[Bash]", path
-    // );
-
-    // let path = generate_to(Zsh, &mut cmd, app_name, outdir)?;
-    // println!(
-    //     "cargo:warning={:012} completion file is generated: {:?}",
-    //     "[Zsh]", path
-    // );
-
-    // let path = generate_to(Fish, &mut cmd, app_name, outdir)?;
-    // println!(
-    //     "cargo:warning={:012} completion file is generated: {:?}",
-    //     "[Fish]", path
-    // );
-
-    // let path = generate_to(Elvish, &mut cmd, app_name, outdir)?;
-    // println!(
-    //     "cargo:warning={:012} completion file is generated: {:?}",
-    //     "[Elvish]", path
-    // );
-
-    // let path = generate_to(PowerShell, &mut cmd, app_name, outdir)?;
-    // println!(
-    //     "cargo:warning={:012} completion file is generated: {:?}",
-    //     "[PowerShell]", path
-    // );
-
     Ok(())
 }

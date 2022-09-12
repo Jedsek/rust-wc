@@ -1,10 +1,5 @@
-mod cli;
-mod output;
-
-use crate::cli::Cli;
-use crate::output::Output;
-use anyhow::Result;
 use clap::Parser;
+use rwc::{cli::Cli, output::Output, Result};
 
 #[tokio::main]
 async fn main() -> Result<()> {
