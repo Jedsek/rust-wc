@@ -8,13 +8,12 @@ use clap::{ArgGroup, Parser};
     // global_setting = AppSettings::DeriveDisplayOrder,
     group(ArgGroup::new("options").multiple(true).required(true).args(&[ "bytes", "chars", "words", "lines", "longest_line"])),
     about = 
-r#"
-A simple GNU/wc command implementation written in Rust, which could print <FILE>'s bytes, chars, words, lines, and more options...
+r#"A simple GNU/wc command implementation written in Rust, which could print <FILE>'s bytes, chars, words and more...
 The output will be formatted as a colorful table :)"#,
 )]
 pub struct Cli {
     /// The path(s) you should provide
-    #[arg(value_name = "FILE", required = true)]
+    #[arg(value_parser = path_is_existed, value_name = "FILE", required = true)]
     pub paths: Vec<PathBuf>,
 
     /// Show the count of bytes
@@ -36,4 +35,13 @@ pub struct Cli {
     /// Show the length of the longest line
     #[arg(short = 'L', long)]
     pub longest_line: bool,
+}
+
+fn path_is_existed(path: &str) -> Result<PathBuf, String> {
+    let path = PathBuf::from(path);
+    if path.exists() {
+        Ok(path)
+    } else {
+        Err(format!("No such path: `{}`", path.display()))
+    }
 }

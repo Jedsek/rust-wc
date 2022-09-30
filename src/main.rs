@@ -1,10 +1,8 @@
 use clap::Parser;
-use rwc::{cli::Cli, output::Output, Result};
+use rwc::{calc, cli::Cli, Result};
 
-#[tokio::main]
-async fn main() -> Result<()> {
+fn main() -> Result<()> {
     let cli = Cli::parse();
-    let output = Output::new(cli).await;
-    output.print().await;
+    calc::create(cli)?.print();
     Ok(())
 }

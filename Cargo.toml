@@ -5,7 +5,7 @@ edition = "2021"
 
 # Reduce the size of binary file
 [profile.release]
-opt-level = "s"
+opt-level = 3
 lto = true
 codegen-units = 1
 panic = 'abort'
@@ -13,15 +13,12 @@ incremental = false
 strip = true
 
 [dependencies]
-tokio = {version = "*", features = ["rt", "rt-multi-thread", "macros", "time", "fs", "io-util"]}
-tokio-stream = "*"
-futures = "*"
 clap = {version = "*", features = ["derive"]}
-clap_complete = "*"
 indicatif = "*"
-prettytable-rs = "*"
+prettytable-rs = {version = "*", default-features = false}
+rayon = "*"
 tap = "*"
-partial_application = "*"
+anyhow = "*"
 
 [build-dependencies]
 clap = {version = "*", features = ["derive"]}

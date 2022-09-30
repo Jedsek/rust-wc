@@ -1,10 +1,10 @@
 use clap::CommandFactory;
 use clap_complete::{generate_to, shells::*};
-use std::io::Result;
+use std::error::Error;
 
 include!("src/cli.rs");
 
-fn main() -> Result<()> {
+fn main() -> Result<(), Box<dyn Error>> {
     let outdir = "completions";
     let app_name = "rwc";
     let mut cmd = Cli::command();
