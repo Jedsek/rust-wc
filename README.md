@@ -8,7 +8,7 @@ what I had archived are as follows:
 - Multiple files support
 - Pretty tabled output
 - Colorful progress bar for reading files (It is useful when reading large file)
-- Completions for common shells [(Look here for more infomation)](/completions/)
+- Completions for common shells [(Look here for more information)](/completions/)
 
 For the Chinese rustaceans, you could view [my blog](https://jedsek.xyz/posts/rust-clap/guide) about using clap-rs to write this project  
 Welcome to open issues :)

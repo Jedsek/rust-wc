@@ -42,7 +42,7 @@ impl Output {
         cli.longest_line
             .then(|| enabled_options.push("Longest line"));
 
-        println!("Calculating the output...\n");
+        println!("Calculating...\n");
         let mut contents = cli
             .paths
             .clone()
