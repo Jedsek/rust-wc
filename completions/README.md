@@ -1,6 +1,6 @@
 # Completions
-Here are some completion files for common shells  
-These files are automatically generated/updated at compile time
+Here are some completion files for common shells.  
+These files are automatically generated/updated at compile time.
 
 |shell|completion file|
 |---|---|
