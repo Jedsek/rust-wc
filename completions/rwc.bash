@@ -8,8 +8,8 @@ _rwc() {
 
     for i in ${COMP_WORDS[@]}
     do
-        case "${i}" in
-            "$1")
+        case "${cmd},${i}" in
+            ",$1")
                 cmd="rwc"
                 ;;
             *)
@@ -19,7 +19,7 @@ _rwc() {
 
     case "${cmd}" in
         rwc)
-            opts="-h -V -b -c -w -l -L --help --version --bytes --chars --words --lines --longest-line <FILE>..."
+            opts="-b -c -w -l -L -h -V --bytes --chars --words --lines --longest-line --help --version <FILE>..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0

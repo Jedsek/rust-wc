@@ -1,41 +1,39 @@
 use std::path::PathBuf;
-
-use clap::{AppSettings, ArgGroup, Parser};
+use clap::{ArgGroup, Parser};
 
 #[derive(Parser)]
-#[clap(
+#[command(
     author = "Author: Jedsek <jedsek@qq.com>",
     version,
-    global_setting = AppSettings::DeriveDisplayOrder,
-    group(ArgGroup::new("options").multiple(true).required(true).args(&[ "bytes", "chars", "words", "lines", "longest-line"])),
+    // global_setting = AppSettings::DeriveDisplayOrder,
+    group(ArgGroup::new("options").multiple(true).required(true).args(&[ "bytes", "chars", "words", "lines", "longest_line"])),
     about = 
 r#"
-This is just a simple GNU/wc command implementation, written in Rust
-It could print <FILE>'s count of bytes, chars, words, lines, and the longest line/word's length
-"#,
+A simple GNU/wc command implementation written in Rust, which could print <FILE>'s bytes, chars, words, lines, and more options...
+The output will be formatted as a colorful table :)"#,
 )]
 pub struct Cli {
     /// The path(s) you should provide
-    #[clap(value_parser, value_name = "FILE", required = true)]
+    #[arg(value_name = "FILE", required = true)]
     pub paths: Vec<PathBuf>,
 
-    /// Print the count of bytes
-    #[clap(value_parser, short, long, action)]
+    /// Show the count of bytes
+    #[arg(short, long)]
     pub bytes: bool,
 
-    /// Print the count of chars
-    #[clap(value_parser, short, long, action)]
+    /// Show the count of chars
+    #[arg(short, long)]
     pub chars: bool,
 
-    /// Print the count of words
-    #[clap(value_parser, short, long, action)]
+    /// Show the count of words
+    #[arg(short, long)]
     pub words: bool,
 
-    /// Print the count of lines
-    #[clap(value_parser, short, long, action)]
+    /// Show the count of lines
+    #[arg(short, long)]
     pub lines: bool,
 
-    /// Print the length of the longest line
-    #[clap(value_parser, short = 'L', long, action)]
+    /// Show the length of the longest line
+    #[arg(short = 'L', long)]
     pub longest_line: bool,
 }

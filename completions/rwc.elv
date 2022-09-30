@@ -18,20 +18,20 @@ set edit:completion:arg-completer[rwc] = {|@words|
     }
     var completions = [
         &'rwc'= {
+            cand -b 'Show the count of bytes'
+            cand --bytes 'Show the count of bytes'
+            cand -c 'Show the count of chars'
+            cand --chars 'Show the count of chars'
+            cand -w 'Show the count of words'
+            cand --words 'Show the count of words'
+            cand -l 'Show the count of lines'
+            cand --lines 'Show the count of lines'
+            cand -L 'Show the length of the longest line'
+            cand --longest-line 'Show the length of the longest line'
             cand -h 'Print help information'
             cand --help 'Print help information'
             cand -V 'Print version information'
             cand --version 'Print version information'
-            cand -b 'Print the count of bytes'
-            cand --bytes 'Print the count of bytes'
-            cand -c 'Print the count of chars'
-            cand --chars 'Print the count of chars'
-            cand -w 'Print the count of words'
-            cand --words 'Print the count of words'
-            cand -l 'Print the count of lines'
-            cand --lines 'Print the count of lines'
-            cand -L 'Print the length of the longest line'
-            cand --longest-line 'Print the length of the longest line'
         }
     ]
     $completions[$command]

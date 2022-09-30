@@ -15,20 +15,20 @@ _rwc() {
 
     local context curcontext="$curcontext" state line
     _arguments "${_arguments_options[@]}" \
+'-b[Show the count of bytes]' \
+'--bytes[Show the count of bytes]' \
+'-c[Show the count of chars]' \
+'--chars[Show the count of chars]' \
+'-w[Show the count of words]' \
+'--words[Show the count of words]' \
+'-l[Show the count of lines]' \
+'--lines[Show the count of lines]' \
+'-L[Show the length of the longest line]' \
+'--longest-line[Show the length of the longest line]' \
 '-h[Print help information]' \
 '--help[Print help information]' \
 '-V[Print version information]' \
 '--version[Print version information]' \
-'*-b[Print the count of bytes]' \
-'*--bytes[Print the count of bytes]' \
-'*-c[Print the count of chars]' \
-'*--chars[Print the count of chars]' \
-'*-w[Print the count of words]' \
-'*--words[Print the count of words]' \
-'*-l[Print the count of lines]' \
-'*--lines[Print the count of lines]' \
-'*-L[Print the length of the longest line]' \
-'*--longest-line[Print the length of the longest line]' \
 '*::paths -- The path(s) you should provide:_files' \
 && ret=0
 }

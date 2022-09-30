@@ -21,20 +21,20 @@ Register-ArgumentCompleter -Native -CommandName 'rwc' -ScriptBlock {
 
     $completions = @(switch ($command) {
         'rwc' {
+            [CompletionResult]::new('-b', 'b', [CompletionResultType]::ParameterName, 'Show the count of bytes')
+            [CompletionResult]::new('--bytes', 'bytes', [CompletionResultType]::ParameterName, 'Show the count of bytes')
+            [CompletionResult]::new('-c', 'c', [CompletionResultType]::ParameterName, 'Show the count of chars')
+            [CompletionResult]::new('--chars', 'chars', [CompletionResultType]::ParameterName, 'Show the count of chars')
+            [CompletionResult]::new('-w', 'w', [CompletionResultType]::ParameterName, 'Show the count of words')
+            [CompletionResult]::new('--words', 'words', [CompletionResultType]::ParameterName, 'Show the count of words')
+            [CompletionResult]::new('-l', 'l', [CompletionResultType]::ParameterName, 'Show the count of lines')
+            [CompletionResult]::new('--lines', 'lines', [CompletionResultType]::ParameterName, 'Show the count of lines')
+            [CompletionResult]::new('-L', 'L', [CompletionResultType]::ParameterName, 'Show the length of the longest line')
+            [CompletionResult]::new('--longest-line', 'longest-line', [CompletionResultType]::ParameterName, 'Show the length of the longest line')
             [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help information')
             [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help information')
             [CompletionResult]::new('-V', 'V', [CompletionResultType]::ParameterName, 'Print version information')
             [CompletionResult]::new('--version', 'version', [CompletionResultType]::ParameterName, 'Print version information')
-            [CompletionResult]::new('-b', 'b', [CompletionResultType]::ParameterName, 'Print the count of bytes')
-            [CompletionResult]::new('--bytes', 'bytes', [CompletionResultType]::ParameterName, 'Print the count of bytes')
-            [CompletionResult]::new('-c', 'c', [CompletionResultType]::ParameterName, 'Print the count of chars')
-            [CompletionResult]::new('--chars', 'chars', [CompletionResultType]::ParameterName, 'Print the count of chars')
-            [CompletionResult]::new('-w', 'w', [CompletionResultType]::ParameterName, 'Print the count of words')
-            [CompletionResult]::new('--words', 'words', [CompletionResultType]::ParameterName, 'Print the count of words')
-            [CompletionResult]::new('-l', 'l', [CompletionResultType]::ParameterName, 'Print the count of lines')
-            [CompletionResult]::new('--lines', 'lines', [CompletionResultType]::ParameterName, 'Print the count of lines')
-            [CompletionResult]::new('-L', 'L', [CompletionResultType]::ParameterName, 'Print the length of the longest line')
-            [CompletionResult]::new('--longest-line', 'longest-line', [CompletionResultType]::ParameterName, 'Print the length of the longest line')
             break
         }
     })
