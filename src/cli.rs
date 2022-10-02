@@ -1,5 +1,5 @@
-use std::path::PathBuf;
 use clap::{ArgGroup, Parser, Subcommand};
+use std::path::PathBuf;
 
 #[derive(Parser)]
 #[command(
@@ -38,7 +38,7 @@ pub struct Cli {
     /// Print the maximum line width (Bytes)
     #[arg(short = 'L', long)]
     pub longest_line: bool,
-    
+
     #[command(subcommand)]
     pub sub_commands: Option<SubCommands>,
 }
@@ -49,8 +49,8 @@ pub enum SubCommands {
     All {
         /// The path(s) you should provide
         #[arg(value_parser = check_path, value_name = "PATH", required = true)]
-        paths: Vec<PathBuf>
-    }
+        paths: Vec<PathBuf>,
+    },
 }
 
 fn check_path(path: &str) -> Result<PathBuf, String> {

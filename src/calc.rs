@@ -33,6 +33,7 @@ pub fn create(mut cli: Cli) -> Result<Output> {
     }
     let contents = cli.paths.clone().pipe(read_files)?;
 
+    println!("Calculating...");
     let paths_with_counts = contents
         .into_par_iter()
         .map(|(path, content)| (path, get_new_counts(&cli, content)))
@@ -55,8 +56,7 @@ fn get_enabled_options(cli: &Cli) -> Vec<&'static str> {
     cli.chars.then(|| enabled_options.push("Chars"));
     cli.words.then(|| enabled_options.push("Words"));
     cli.lines.then(|| enabled_options.push("Lines"));
-    cli.longest_line
-        .then(|| enabled_options.push("Maximum line width (Bytes)"));
+    cli.longest_line.then(|| enabled_options.push("Maximum line width (Bytes)"));
 
     enabled_options
 }
@@ -75,20 +75,18 @@ impl Output {
             let mut table = Table::new().tap_mut(|x| x.set_titles(titles));
             table.set_format(*FORMAT_BOX_CHARS);
 
-            self.paths_with_counts
-                .into_iter()
-                .for_each(|(path, counts)| {
-                    let row = counts.into_iter().map(|x| cell!(x)).collect::<Vec<_>>();
-                    let row = Row::new(row).tap_mut(|x| {
-                        let cell = if path.starts_with("Input") {
-                            cell!(Fbb -> path.display())
-                        } else {
-                            cell!(Fmb -> path.display())
-                        };
-                        x.insert_cell(0, cell);
-                    });
-                    table.add_row(row);
+            self.paths_with_counts.into_iter().for_each(|(path, counts)| {
+                let row = counts.into_iter().map(|x| cell!(x)).collect::<Vec<_>>();
+                let row = Row::new(row).tap_mut(|x| {
+                    let cell = if path.starts_with("Input") {
+                        cell!(Fbb -> path.display())
+                    } else {
+                        cell!(Fmb -> path.display())
+                    };
+                    x.insert_cell(0, cell);
                 });
+                table.add_row(row);
+            });
 
             table
         };
@@ -98,12 +96,11 @@ impl Output {
 
 fn read_files(paths: Vec<PathBuf>) -> Result<HashMap<PathBuf, String>> {
     let bars = MultiProgress::new();
-    let style = ProgressStyle::with_template(
-        "[{elapsed}][{percent}%] {bar:45.cyan/blue} {bytes} {wide_msg}",
-    )?
-    .progress_chars(">-");
+    let style =
+        ProgressStyle::with_template("[{elapsed}][{percent}%] {bar:45.cyan/blue} {bytes} {wide_msg}")?
+            .progress_chars(">-");
 
-    bars.println("Reading files / Getting content from stdin:\n")?;
+    bars.println("Reading files / Getting content from stdin:")?;
 
     let num = Mutex::new(-1);
     let result = paths
@@ -139,22 +136,6 @@ fn read_files(paths: Vec<PathBuf>) -> Result<HashMap<PathBuf, String>> {
     Ok(result)
 }
 
-#[allow(unused)]
-fn get_counts(cli: &Cli, content: String) -> Vec<usize> {
-    vec![
-        cli.bytes.then_some(content.len()),
-        cli.chars.then_some(content.chars().count()),
-        cli.words.then_some(content.split_whitespace().count()),
-        cli.lines.then_some(content.lines().count()),
-        cli.longest_line
-            .then_some(content.lines().map(|x| x.len()).max().unwrap_or(0)),
-    ]
-    .into_iter()
-    .flatten()
-    .collect()
-}
-
-#[allow(unused)]
 fn get_new_counts(cli: &Cli, content: String) -> Vec<usize> {
     let v: Vec<Option<usize>> = vec![None; 5];
     v.into_par_iter()
@@ -164,20 +145,14 @@ fn get_new_counts(cli: &Cli, content: String) -> Vec<usize> {
             1 => cli.chars.then_some(content.chars().count()),
             2 => cli.words.then_some(content.split_whitespace().count()),
             3 => cli.lines.then_some(content.lines().count()),
-            4 => cli
-                .longest_line
-                .then_some(content.lines().map(|x| x.len()).max().unwrap_or(0)),
+            4 => cli.longest_line.then_some(content.lines().map(|x| x.len()).max().unwrap_or(0)),
             _ => None,
         })
         .flatten()
-        .collect::<Vec<usize>>()
+        .collect::<Vec<_>>()
 }
 
-fn read_file_with_progress(
-    path: &PathBuf,
-    style: &ProgressStyle,
-    bars: &MultiProgress,
-) -> Result<String> {
+fn read_file_with_progress(path: &PathBuf, style: &ProgressStyle, bars: &MultiProgress) -> Result<String> {
     let mut content = String::new();
 
     let file = File::open(path)?;
