@@ -108,6 +108,7 @@ fn read_file(path: &PathBuf, style: &ProgressStyle, bars: &MultiProgress) -> Res
 
     let file = File::open(path)?;
     let size = file.metadata()?.len();
+    
     let bar = ProgressBar::new(size)
         .with_message(format! {"Reading {}", path.display()})
         .with_style(style.clone())
