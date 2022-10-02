@@ -15,28 +15,96 @@ _rwc() {
 
     local context curcontext="$curcontext" state line
     _arguments "${_arguments_options[@]}" \
-'-b[Show the count of bytes]' \
-'--bytes[Show the count of bytes]' \
-'-c[Show the count of chars]' \
-'--chars[Show the count of chars]' \
-'-w[Show the count of words]' \
-'--words[Show the count of words]' \
-'-l[Show the count of lines]' \
-'--lines[Show the count of lines]' \
-'-L[Show the length of the longest line]' \
-'--longest-line[Show the length of the longest line]' \
+'-b[Print the byte counts]' \
+'--bytes[Print the byte counts]' \
+'-c[Print the character counts]' \
+'--chars[Print the character counts]' \
+'-w[Print the word counts]' \
+'--words[Print the word counts]' \
+'-l[Print the line counts]' \
+'--lines[Print the line counts]' \
+'-L[Print the maximum line width (Bytes)]' \
+'--longest-line[Print the maximum line width (Bytes)]' \
 '-h[Print help information]' \
 '--help[Print help information]' \
 '-V[Print version information]' \
 '--version[Print version information]' \
 '*::paths -- The path(s) you should provide:_files' \
+":: :_rwc_commands" \
+"*::: :->rwc" \
 && ret=0
+    case $state in
+    (rwc)
+        words=($line[2] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:rwc-command-$line[2]:"
+        case $line[2] in
+            (all)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'*::paths -- The path(s) you should provide:_files' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" \
+":: :_rwc__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:rwc-help-command-$line[1]:"
+        case $line[1] in
+            (all)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
 }
 
 (( $+functions[_rwc_commands] )) ||
 _rwc_commands() {
-    local commands; commands=()
+    local commands; commands=(
+'all:Enabled all available options' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
     _describe -t commands 'rwc commands' commands "$@"
+}
+(( $+functions[_rwc__all_commands] )) ||
+_rwc__all_commands() {
+    local commands; commands=()
+    _describe -t commands 'rwc all commands' commands "$@"
+}
+(( $+functions[_rwc__help__all_commands] )) ||
+_rwc__help__all_commands() {
+    local commands; commands=()
+    _describe -t commands 'rwc help all commands' commands "$@"
+}
+(( $+functions[_rwc__help_commands] )) ||
+_rwc__help_commands() {
+    local commands; commands=(
+'all:Enabled all available options' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'rwc help commands' commands "$@"
+}
+(( $+functions[_rwc__help__help_commands] )) ||
+_rwc__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'rwc help help commands' commands "$@"
 }
 
 _rwc "$@"

@@ -17,7 +17,6 @@ indicatif = "*"
 prettytable-rs = {version = "*", default-features = false}
 rayon = "*"
 tap = "*"
-anyhow = "*"
 
 [build-dependencies]
 clap = {version = "*", features = ["derive"]}

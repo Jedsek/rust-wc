@@ -12,6 +12,18 @@ _rwc() {
             ",$1")
                 cmd="rwc"
                 ;;
+            rwc,all)
+                cmd="rwc__all"
+                ;;
+            rwc,help)
+                cmd="rwc__help"
+                ;;
+            rwc__help,all)
+                cmd="rwc__help__all"
+                ;;
+            rwc__help,help)
+                cmd="rwc__help__help"
+                ;;
             *)
                 ;;
         esac
@@ -19,8 +31,64 @@ _rwc() {
 
     case "${cmd}" in
         rwc)
-            opts="-b -c -w -l -L -h -V --bytes --chars --words --lines --longest-line --help --version <FILE>..."
+            opts="-b -c -w -l -L -h -V --bytes --chars --words --lines --longest-line --help --version <PATH>... all help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rwc__all)
+            opts="-h --help <PATH>..."
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rwc__help)
+            opts="all help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rwc__help__all)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        rwc__help__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi

@@ -1,5 +1,5 @@
 use std::path::PathBuf;
-use clap::{ArgGroup, Parser};
+use clap::{ArgGroup, Parser, Subcommand};
 
 #[derive(Parser)]
 #[command(
@@ -7,39 +7,55 @@ use clap::{ArgGroup, Parser};
     version,
     // global_setting = AppSettings::DeriveDisplayOrder,
     group(ArgGroup::new("options").multiple(true).required(true).args(&[ "bytes", "chars", "words", "lines", "longest_line"])),
+    subcommand_negates_reqs = true,
     about = 
-r#"A simple GNU/wc command implementation written in Rust, which could print <FILE>'s bytes, chars, words and more...
+r#"A simple GNU/wc command clone, written in Rust
+
+It could count file's bytes, chars, words and more...
 The output will be formatted as a colorful table :)"#,
 )]
 pub struct Cli {
     /// The path(s) you should provide
-    #[arg(value_parser = path_is_existed, value_name = "FILE", required = true)]
+    #[arg(value_parser = check_path, value_name = "PATH", required = true)]
     pub paths: Vec<PathBuf>,
 
-    /// Show the count of bytes
+    /// Print the byte counts
     #[arg(short, long)]
     pub bytes: bool,
 
-    /// Show the count of chars
+    /// Print the character counts
     #[arg(short, long)]
     pub chars: bool,
 
-    /// Show the count of words
+    /// Print the word counts
     #[arg(short, long)]
     pub words: bool,
 
-    /// Show the count of lines
+    /// Print the line counts
     #[arg(short, long)]
     pub lines: bool,
 
-    /// Show the length of the longest line
+    /// Print the maximum line width (Bytes)
     #[arg(short = 'L', long)]
     pub longest_line: bool,
+    
+    #[command(subcommand)]
+    pub sub_commands: Option<SubCommands>,
 }
 
-fn path_is_existed(path: &str) -> Result<PathBuf, String> {
+#[derive(Subcommand)]
+pub enum SubCommands {
+    /// Enabled all available options
+    All {
+        /// The path(s) you should provide
+        #[arg(value_parser = check_path, value_name = "PATH", required = true)]
+        paths: Vec<PathBuf>
+    }
+}
+
+fn check_path(path: &str) -> Result<PathBuf, String> {
     let path = PathBuf::from(path);
-    if path.exists() {
+    if path.exists() || path.as_os_str() == "-" {
         Ok(path)
     } else {
         Err(format!("No such path: `{}`", path.display()))
