@@ -1,15 +1,21 @@
 # rwc
-This is just a simple version of GNU/wc command implementation, written in Rust.  
+This is just a simple version of GNU/wc command clone, written in Rust.  
 For rust beginners, feel free to look this project for practice :)
+
+(Using Clap-v4)
 
 ## Features
 What I had archived are as follows:
-- Support for reading multiple files in parrllel
+- Support for reading multiple files and calculating the count in parrllel
 - Pretty tabled output
 - Colorful progress bar for reading files (It is useful when reading large file)
 - Completions for common shells [(Look here for more information)](/completions/)
 
-For the Chinese rustaceans, you could view [my blog](https://jedsek.xyz/posts/rust-clap/guide) about using clap-rs to write this project  
+**Note:**  
+It is super faster and prettier than `wc` command when reading a large of big files.  
+To put it another word, it is slower when reading a small numbers of small files.
+
+For the Chinese, you could view [my blog](https://jedsek.xyz/posts/rust-clap/guide) about using clap-rs to write this project  
 
 ## Build
 
