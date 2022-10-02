@@ -1,7 +1,18 @@
 [package]
 name = "rwc"
-version = "0.1.0"
+description = "A GNU/wc clone written in rust, which is super faster when reading a large of big files"
+version = "0.3.0"
+authors = ["jedsek <jedsek@qq.com>"]
 edition = "2021"
+readme = "README.md"
+
+documentation = "https://github.com/jedsek/rust-wc"
+homepage = "https://github.com/jedsek/rust-wc"
+repository = "https://github.com/jedsek/rust-wc"
+
+keywords = ["wc", "command-line", "rust-wc", "rwc"]
+categories = ["command-line-utilities", "unix", "tools", "wc"]
+license = "MIT"
 
 # Reduce the size of binary file
 [profile.release]
