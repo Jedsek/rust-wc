@@ -36,7 +36,7 @@ pub fn create(mut cli: Cli) -> Result<Output> {
     println!("Calculating...");
     let paths_with_counts = contents
         .into_par_iter()
-        .map(|(path, content)| (path, get_new_counts(&cli, content)))
+        .map(|(path, content)| (path, calculate_count(&cli, content)))
         .collect::<HashMap<_, _>>();
 
     let enabled_options = get_enabled_options(&cli);
@@ -136,7 +136,7 @@ fn read_files(paths: Vec<PathBuf>) -> Result<HashMap<PathBuf, String>> {
     Ok(result)
 }
 
-fn get_new_counts(cli: &Cli, content: String) -> Vec<usize> {
+fn calculate_count(cli: &Cli, content: String) -> Vec<usize> {
     let v: Vec<Option<usize>> = vec![None; 5];
     v.into_par_iter()
         .enumerate()
