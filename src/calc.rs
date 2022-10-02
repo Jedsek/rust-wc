@@ -35,7 +35,7 @@ pub fn create(mut cli: Cli) -> Result<Output> {
 
     let paths_with_counts = contents
         .into_par_iter()
-        .map(|(path, content)| (path, get_counts(&cli, content)))
+        .map(|(path, content)| (path, get_new_counts(&cli, content)))
         .collect::<HashMap<_, _>>();
 
     let enabled_options = get_enabled_options(&cli);
@@ -113,7 +113,7 @@ fn read_files(paths: Vec<PathBuf>) -> Result<HashMap<PathBuf, String>> {
             let should_input = path.as_os_str() == "-";
 
             let content = if !should_input {
-                read_file(&path, &style, &bars)
+                read_file_with_progress(&path, &style, &bars)
             } else {
                 content_from_stdin().tap(|_| println!())
             };
@@ -139,6 +139,7 @@ fn read_files(paths: Vec<PathBuf>) -> Result<HashMap<PathBuf, String>> {
     Ok(result)
 }
 
+#[allow(unused)]
 fn get_counts(cli: &Cli, content: String) -> Vec<usize> {
     vec![
         cli.bytes.then_some(content.len()),
@@ -153,7 +154,30 @@ fn get_counts(cli: &Cli, content: String) -> Vec<usize> {
     .collect()
 }
 
-fn read_file(path: &PathBuf, style: &ProgressStyle, bars: &MultiProgress) -> Result<String> {
+#[allow(unused)]
+fn get_new_counts(cli: &Cli, content: String) -> Vec<usize> {
+    let v: Vec<Option<usize>> = vec![None; 5];
+    v.into_par_iter()
+        .enumerate()
+        .map(|(idx, _)| match idx {
+            0 => cli.bytes.then_some(content.len()),
+            1 => cli.chars.then_some(content.chars().count()),
+            2 => cli.words.then_some(content.split_whitespace().count()),
+            3 => cli.lines.then_some(content.lines().count()),
+            4 => cli
+                .longest_line
+                .then_some(content.lines().map(|x| x.len()).max().unwrap_or(0)),
+            _ => None,
+        })
+        .flatten()
+        .collect::<Vec<usize>>()
+}
+
+fn read_file_with_progress(
+    path: &PathBuf,
+    style: &ProgressStyle,
+    bars: &MultiProgress,
+) -> Result<String> {
     let mut content = String::new();
 
     let file = File::open(path)?;
