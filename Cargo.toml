@@ -31,12 +31,12 @@ incremental = false
 strip = true
 
 [dependencies]
-clap = {version = "*", features = ["derive"]}
-indicatif = "*"
-prettytable-rs = {version = "*", default-features = false}
-rayon = "*"
-tap = "*"
+clap = {version = "4.0.8", features = ["derive"]}
+indicatif = "0.17.1"
+prettytable-rs = {version = "0.9.0", default-features = false}
+rayon = "1.5.3"
+tap = "1.0.1"
 
 [build-dependencies]
-clap = {version = "*", features = ["derive"]}
-clap_complete = "*"
+clap = {version = "4.0.8", features = ["derive"]}
+clap_complete = "4.0.2"
