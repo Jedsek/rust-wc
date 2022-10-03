@@ -31,10 +31,10 @@ _rwc() {
 '--version[Print version information]' \
 '*::paths -- The path(s) you should provide:_files' \
 ":: :_rwc_commands" \
-"*::: :->rwc" \
+"*::: :->rust-wc" \
 && ret=0
     case $state in
-    (rwc)
+    (rust-wc)
         words=($line[2] "${words[@]}")
         (( CURRENT += 1 ))
         curcontext="${curcontext%:*:*}:rwc-command-$line[2]:"
