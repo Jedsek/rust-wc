@@ -31,7 +31,16 @@ The path of command is `rust-wc/target/release/rwc`, you could copy/move it to o
 or just `cargo run --release -- <args>`
 
 ### Release
-You could download the binary file published in [release-site](https://github.com/Jedsek/rust-wc/releases/)
+
+From crates.io:
+
+```bash
+cargo install rust-wc
+```
+
+And you could also get the binary file in [Release](https://github.com/Jedsek/rust-wc/releases/)
+
+
 
 ## Examples
 
