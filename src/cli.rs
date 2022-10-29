@@ -9,8 +9,10 @@ use std::path::PathBuf;
     verbatim_doc_comment
 )]
 pub struct Cli {
-    #[arg(value_parser = check_path, value_name = "PATH", required = true, help = r#"The path(s) you should provide
-Note when FILE is `-`, read standard input (stop inputting by `CTRL-D`)"#)]
+    #[arg(value_parser = check_path, value_name = "PATH", required = true, help = 
+r#"The path(s) you should provide
+Note when FILE is `-`, read standard input (stop inputting by `CTRL-D`)
+The file read from stdin will prefix with `Input/`, and the other will prefix with `./` "#)]
     pub paths: Vec<PathBuf>,
 
     /// Print the byte counts
@@ -29,7 +31,7 @@ Note when FILE is `-`, read standard input (stop inputting by `CTRL-D`)"#)]
     #[arg(short, long)]
     pub lines: bool,
 
-    /// Print the maximum line width (Bytes)
+    /// Print the maximum line width (Chars)
     #[arg(short = 'L', long)]
     pub longest_line: bool,
 

@@ -1,20 +1,15 @@
-#![allow(unused)]
-
-use crate::Result;
+use crate::{PathWithContent, Result};
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use rayon::prelude::*;
 use std::ffi::OsStr;
 use std::process;
-use std::sync::atomic::AtomicUsize;
+use std::sync::atomic::{AtomicUsize, Ordering};
 use std::{
-    collections::HashMap,
     fs::File,
     io::{BufReader, Read},
     path::PathBuf,
-    sync::Mutex,
 };
 
-type PathWithContent = HashMap<PathBuf, String>;
 static INPUTTED_FILE_NUMBER: AtomicUsize = AtomicUsize::new(0);
 const BUFFER_SIZR: usize = 16 * 1024;
 
@@ -36,7 +31,6 @@ impl PathExt for PathBuf {
 pub fn read_files(paths: Vec<PathBuf>) -> Result<PathWithContent> {
     println!("Reading files / Getting content from stdin:");
 
-    let num = Mutex::new(-1);
     let result = paths
         .into_par_iter()
         .filter(|path| path.is_file() || path.as_os_str() == "-")
@@ -50,9 +44,8 @@ pub fn read_files(paths: Vec<PathBuf>) -> Result<PathWithContent> {
             }
 
             if should_read_from_input {
-                let mut num = num.lock().unwrap();
-                *num += 1;
-                path = PathBuf::from(format!("Input/{}", num));
+                let inputted_file_number = INPUTTED_FILE_NUMBER.fetch_add(1, Ordering::SeqCst);
+                path = PathBuf::from(format!("Input/{}", inputted_file_number));
             }
 
             let content = content.unwrap_or_else(|err| {

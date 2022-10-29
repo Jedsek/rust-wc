@@ -1,20 +1,18 @@
 use crate::{
     cli::{Cli, SubCommands},
     files::read_files,
-    Result,
+    Counts, Result,
 };
 use prettytable::{cell, format::consts::FORMAT_BOX_CHARS, Row, Table};
 use rayon::prelude::*;
 use std::{collections::HashMap, path::PathBuf, str};
 
-type Counts = Vec<usize>;
-
-pub struct WcOutput {
+pub struct WcResult {
     enabled_options: Vec<&'static str>,
     paths_with_counts: HashMap<PathBuf, Counts>,
 }
 
-pub fn create(mut cli: Cli) -> Result<WcOutput> {
+pub fn get(mut cli: Cli) -> Result<WcResult> {
     println!("Please waiting...\n");
 
     match cli.sub_commands {
@@ -26,18 +24,18 @@ pub fn create(mut cli: Cli) -> Result<WcOutput> {
     };
 
     println!("Calculating...");
-    let wc_output = WcOutput {
+    let wc_result = WcResult {
         enabled_options: cli.get_enabled_options(),
         paths_with_counts: {
             let contents = read_files(cli.paths.clone())?;
-            contents.into_par_iter().map(|(path, content)| (path, calculate_count(&cli, content))).collect()
+            contents.into_par_iter().map(|(path, content)| (path, calculate_counts(&cli, content))).collect()
         },
     };
 
-    Ok(wc_output)
+    Ok(wc_result)
 }
 
-impl WcOutput {
+impl WcResult {
     pub fn to_pretty_table(self) -> Table {
         let titles = {
             let enabled_options = self.enabled_options;
@@ -66,7 +64,7 @@ impl WcOutput {
     }
 }
 
-fn calculate_count(cli: &Cli, content: String) -> Counts {
+fn calculate_counts(cli: &Cli, content: String) -> Counts {
     let v: Vec<Option<usize>> = vec![None; 5];
     v.into_par_iter()
         .enumerate()

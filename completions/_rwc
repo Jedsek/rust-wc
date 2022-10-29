@@ -23,14 +23,15 @@ _rwc() {
 '--words[Print the word counts]' \
 '-l[Print the line counts]' \
 '--lines[Print the line counts]' \
-'-L[Print the maximum line width (Bytes)]' \
-'--longest-line[Print the maximum line width (Bytes)]' \
+'-L[Print the maximum line width (Chars)]' \
+'--longest-line[Print the maximum line width (Chars)]' \
 '-h[Print help information]' \
 '--help[Print help information]' \
 '-V[Print version information]' \
 '--version[Print version information]' \
 '*::paths -- The path(s) you should provide
-Note when FILE is `-`, read standard input (stop inputting by `CTRL-D`):_files' \
+Note when FILE is `-`, read standard input (stop inputting by `CTRL-D`)
+The file read from stdin will prefix with `Input/`, and the other will prefix with `./` :_files' \
 ":: :_rwc_commands" \
 "*::: :->rwc" \
 && ret=0
