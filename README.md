@@ -85,7 +85,7 @@ Options:
   -c, --chars         Print the character counts
   -w, --words         Print the word counts
   -l, --lines         Print the line counts
-  -L, --longest-line  Print the maximum line width (Bytes)
+  -L, --longest-line  Print the maximum line width (Chars)
   -h, --help          Print help information
   -V, --version       Print version information
 

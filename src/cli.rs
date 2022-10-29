@@ -3,20 +3,14 @@ use std::path::PathBuf;
 
 #[derive(Parser)]
 #[command(
-    author = "Author: Jedsek <jedsek@qq.com>",
-    version,
-    // global_setting = AppSettings::DeriveDisplayOrder,
+    author, version, about,
     group(ArgGroup::new("options").multiple(true).required(true).args(&[ "bytes", "chars", "words", "lines", "longest_line"])),
     subcommand_negates_reqs = true,
-    about = 
-r#"A simple GNU/wc command clone, written in Rust
-
-It could count file's bytes, chars, words and more...
-The output will be formatted as a colorful table :)"#,
+    verbatim_doc_comment
 )]
 pub struct Cli {
-    /// The path(s) you should provide
-    #[arg(value_parser = check_path, value_name = "PATH", required = true)]
+    #[arg(value_parser = check_path, value_name = "PATH", required = true, help = r#"The path(s) you should provide
+Note when FILE is `-`, read standard input (stop inputting by `CTRL-D`)"#)]
     pub paths: Vec<PathBuf>,
 
     /// Print the byte counts
@@ -53,9 +47,9 @@ pub enum SubCommands {
     },
 }
 
-fn check_path(path: &str) -> Result<PathBuf, String> {
-    let path = PathBuf::from(path);
-    if path.exists() || path.as_os_str() == "-" {
+fn check_path(filename: &str) -> Result<PathBuf, String> {
+    let path = PathBuf::from(filename);
+    if filename == "-" || path.exists() {
         Ok(path)
     } else {
         Err(format!("No such path: `{}`", path.display()))

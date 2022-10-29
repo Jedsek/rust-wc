@@ -29,7 +29,8 @@ _rwc() {
 '--help[Print help information]' \
 '-V[Print version information]' \
 '--version[Print version information]' \
-'*::paths -- The path(s) you should provide:_files' \
+'*::paths -- The path(s) you should provide
+Note when FILE is `-`, read standard input (stop inputting by `CTRL-D`):_files' \
 ":: :_rwc_commands" \
 "*::: :->rwc" \
 && ret=0
