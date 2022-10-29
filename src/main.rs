@@ -3,6 +3,7 @@ use rwc::{calc, cli::Cli, Result};
 
 fn main() -> Result<()> {
     let cli = Cli::parse();
-    calc::create(cli)?.print();
+    let pretty_table = calc::create(cli)?.to_pretty_table();
+    pretty_table.printstd();
     Ok(())
 }

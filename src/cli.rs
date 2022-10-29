@@ -55,3 +55,24 @@ fn check_path(filename: &str) -> Result<PathBuf, String> {
         Err(format!("No such path: `{}`", path.display()))
     }
 }
+
+impl Cli {
+    pub fn enable_all_options(&mut self) {
+        self.bytes = true;
+        self.chars = true;
+        self.words = true;
+        self.lines = true;
+        self.longest_line = true;
+    }
+    pub fn get_enabled_options(&self) -> Vec<&'static str> {
+        let mut enabled_options = vec![];
+
+        self.bytes.then(|| enabled_options.push("Bytes"));
+        self.chars.then(|| enabled_options.push("Chars"));
+        self.words.then(|| enabled_options.push("Words"));
+        self.lines.then(|| enabled_options.push("Lines"));
+        self.longest_line.then(|| enabled_options.push("Maximum line width (Chars)"));
+
+        enabled_options
+    }
+}
