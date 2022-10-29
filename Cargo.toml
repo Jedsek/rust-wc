@@ -1,5 +1,5 @@
 [package]
-name = "rwc"
+name = "rust-wc"
 description = "A GNU/wc clone written in rust, which is faster when reading a large of big files"
 version = "0.3.2"
 authors = ["jedsek <jedsek@qq.com>"]
@@ -13,6 +13,10 @@ repository = "https://github.com/jedsek/rust-wc"
 keywords = ["wc", "command-line", "rust-wc", "rwc"]
 categories = ["command-line-utilities", "unix", "tools", "wc"]
 license = "MIT"
+
+[[bin]]
+name = "rwc"
+path = "src/main.rs"
 
 # Reduce the size of binary file
 [profile.release]
