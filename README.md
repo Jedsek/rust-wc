@@ -6,7 +6,7 @@ For rust beginners, feel free to look this project for practice :)
 
 ## Features
 What I had archived are as follows:
-- Support for reading multiple files and calculating the count in parrllel
+- Support for reading multiple files and calculating the result in parrllel
 - Pretty tabled output
 - Colorful progress bar for reading files (It is useful when reading large file)
 - Completions for common shells [(Look here for more information)](/completions/)
@@ -37,7 +37,7 @@ You could download the binary file published in [release-site](https://github.co
 
 - Count the files in the specified directory with all options enabled:
 
-```bash
+```
 $ rwc all src/*
 Please waiting...
 
@@ -63,14 +63,11 @@ Calculating...
 
 - Get help:
 
-```bash
+```
 $ rwc -h
-A simple GNU/wc command clone, written in Rust
+A GNU/wc clone written in rust, which is faster when reading a large of big files
 
-It could count file's bytes, chars, words and more...
-The output will be formatted as a colorful table :)
-
-Usage: rwc <--bytes|--chars|--words|--lines|--longest-line> <PATH>...
+Usage: rwc <--bytes|--chars|--words|--lines|--longest-line> [PATH]...
        rwc [PATH]... <COMMAND>
 
 Commands:
@@ -78,7 +75,9 @@ Commands:
   help  Print this message or the help of the given subcommand(s)
 
 Arguments:
-  <PATH>...  The path(s) you should provide
+  [PATH]...  The path(s) you should provide
+             Note when without FILE or it is `-`, read standard input (stop inputting by `CTRL-D`)
+             The file read from stdin will prefix with `Input/`, and the other will prefix with `./` [default: -]
 
 Options:
   -b, --bytes         Print the byte counts
@@ -88,5 +87,4 @@ Options:
   -L, --longest-line  Print the maximum line width (Chars)
   -h, --help          Print help information
   -V, --version       Print version information
-
 ```

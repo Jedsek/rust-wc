@@ -12,7 +12,7 @@ pub struct Cli {
     #[arg(value_parser = check_path, value_name = "PATH", default_value = "-", help = 
 r#"The path(s) you should provide
 Note when without FILE or it is `-`, read standard input (stop inputting by `CTRL-D`)
-The file read from stdin will prefix with `Input/`, and the other will prefix with `./` "#)]
+The file read from stdin will prefix with `Input/`, and the other will prefix with `./`"#)]
     pub paths: Vec<PathBuf>,
 
     /// Print the byte counts
