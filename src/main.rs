@@ -1,5 +1,5 @@
 use clap::Parser;
-use rwc::{cli::Cli, wc_result, Result};
+use rust_wc::{cli::Cli, wc_result, Result};
 
 fn main() -> Result<()> {
     let cli = Cli::parse();

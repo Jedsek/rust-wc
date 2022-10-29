@@ -12,17 +12,17 @@ _rwc() {
             ",$1")
                 cmd="rwc"
                 ;;
-            rwc,all)
-                cmd="rwc__all"
+            rust__wc,all)
+                cmd="rust__wc__all"
                 ;;
-            rwc,help)
-                cmd="rwc__help"
+            rust__wc,help)
+                cmd="rust__wc__help"
                 ;;
-            rwc__help,all)
-                cmd="rwc__help__all"
+            rust__wc__help,all)
+                cmd="rust__wc__help__all"
                 ;;
-            rwc__help,help)
-                cmd="rwc__help__help"
+            rust__wc__help,help)
+                cmd="rust__wc__help__help"
                 ;;
             *)
                 ;;
