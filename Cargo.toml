@@ -27,7 +27,6 @@ clap = {version = "4.0.8", features = ["derive"]}
 indicatif = "0.17.1"
 prettytable-rs = "0.9.0"
 rayon = "1.5.3"
-tap = "1.0.1"
 
 [build-dependencies]
 clap = {version = "4.0.8", features = ["derive"]}

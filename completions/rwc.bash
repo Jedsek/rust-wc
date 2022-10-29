@@ -31,7 +31,7 @@ _rwc() {
 
     case "${cmd}" in
         rwc)
-            opts="-b -c -w -l -L -h -V --bytes --chars --words --lines --longest-line --help --version <PATH>... all help"
+            opts="-b -c -w -l -L -h -V --bytes --chars --words --lines --longest-line --help --version [PATH]... all help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -45,7 +45,7 @@ _rwc() {
             return 0
             ;;
         rwc__all)
-            opts="-h --help <PATH>..."
+            opts="-h --help [PATH]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0

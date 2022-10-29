@@ -30,7 +30,7 @@ _rwc() {
 '-V[Print version information]' \
 '--version[Print version information]' \
 '*::paths -- The path(s) you should provide
-Note when FILE is `-`, read standard input (stop inputting by `CTRL-D`)
+Note when without FILE or it is `-`, read standard input (stop inputting by `CTRL-D`)
 The file read from stdin will prefix with `Input/`, and the other will prefix with `./` :_files' \
 ":: :_rwc_commands" \
 "*::: :->rwc" \
