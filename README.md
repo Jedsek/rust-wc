@@ -31,7 +31,7 @@ The path of command is `rust-wc/target/release/rwc`, you could copy/move it to o
 or just `cargo run --release -- <args>`
 
 ### Release
-You could download the binary file published in [Release](https://github.com/Jedsek/rust-wc/releases/)
+You could download the binary or tar.gz published in [Release](https://github.com/Jedsek/rust-wc/releases/)
 
 ## Examples
 
