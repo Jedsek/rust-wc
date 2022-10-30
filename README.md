@@ -1,8 +1,9 @@
 # rwc
 This is just a simple version of GNU/wc command clone, written in Rust.  
-For rust beginners, feel free to look this project for practice :)
+For rust beginners, feel free to look this project for practice :)  
+(Using Clap-v4)  
 
-(Using Clap-v4)
+[![asciicast](https://asciinema.org/a/533324.svg)](https://asciinema.org/a/533324)
 
 ## Features
 What I had archived are as follows:
