@@ -1,5 +1,3 @@
-#![feature(let_chains)]
-
 use std::{collections::HashMap, path::PathBuf};
 
 pub mod cli;

@@ -83,7 +83,10 @@ fn read_file_with_progress(path: &PathBuf, style: ProgressStyle, bars: MultiProg
     let mut bufreader = BufReader::new(file);
     let mut buf = [0; BUFFER_SIZR];
 
-    while let Ok(n) = bufreader.read(&mut buf) && n != 0 {
+    while let Ok(n) = bufreader.read(&mut buf) {
+        if n == 0 {
+            break;
+        }
         bar.inc(n as u64);
         content += &String::from_utf8_lossy(&buf[..n]);
     }

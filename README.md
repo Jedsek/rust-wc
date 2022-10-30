@@ -13,7 +13,7 @@ What I had archived are as follows:
 
 **Note:**  
 It is super faster and prettier than `wc` command when reading a large of big files. (Thanks to `rayon`)  
-To put it another word, it is slower when reading a small numbers of small files.
+But it may be slower when reading a small numbers of small files due to time spending for runtime building.
 
 For the Chinese, you could view [my blog](https://jedsek.xyz/posts/rust-clap/guide) about using clap-rs to write this project  
 
@@ -31,7 +31,7 @@ The path of command is `rust-wc/target/release/rwc`, you could copy/move it to o
 or just `cargo run --release -- <args>`
 
 ### Release
-You could download the binary or tar.gz published in [Release](https://github.com/Jedsek/rust-wc/releases/)
+You could download the binary published in [Release](https://github.com/Jedsek/rust-wc/releases/)
 
 ## Examples
 
@@ -58,7 +58,6 @@ Calculating...
 ├───────────────┼───────┼───────┼───────┼───────┼────────────────────────────┤
 │ ./src/lib.rs  │ 126   │ 126   │ 14    │ 6     │ 72                         │
 └───────────────┴───────┴───────┴───────┴───────┴────────────────────────────┘
-
 ```
 
 - Get help:
@@ -88,3 +87,9 @@ Options:
   -h, --help          Print help information
   -V, --version       Print version information
 ```
+
+## Welcome
+Welcome to open issus when you meet problems or want to improve the code.  
+Thanks :)
+
+## TODOs
