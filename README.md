@@ -31,7 +31,7 @@ The path of command is `rust-wc/target/release/rwc`, you could copy/move it to o
 or just `cargo run --release -- <args>`
 
 ### Release
-You could download the binary file published in [release-site](https://github.com/Jedsek/rust-wc/releases/)
+You could download the binary file published in [Release](https://github.com/Jedsek/rust-wc/releases/)
 
 ## Examples
 
@@ -48,7 +48,7 @@ Reading files / Getting content from stdin:
 [0s][100%] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 5.43 KiB Done!
 Calculating...
 ┌───────────────┬───────┬───────┬───────┬───────┬────────────────────────────┐
-│ Path          │ Bytes │ Chars │ Words │ Lines │ Maximum line width (Bytes) │
+│ Path          │ Bytes │ Chars │ Words │ Lines │ Maximum line width (Chars) │
 ├───────────────┼───────┼───────┼───────┼───────┼────────────────────────────┤
 │ ./src/calc.rs │ 5562  │ 5562  │ 450   │ 181   │ 110                        │
 ├───────────────┼───────┼───────┼───────┼───────┼────────────────────────────┤
