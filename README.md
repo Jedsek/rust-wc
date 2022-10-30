@@ -94,3 +94,6 @@ Welcome to open issus when you meet problems or want to improve the code.
 Thanks :)
 
 ## TODOs
+- [ ] Better handling directories arguments
+- [ ] Output should report errors when the file could't be read
+- [ ] Respect `.gitignore` file
