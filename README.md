@@ -18,7 +18,7 @@ But it may be slower when reading a small numbers of small files due to time spe
 
 For the Chinese, you could view [my blog](https://jedsek.xyz/posts/rust-clap/guide) about using clap-rs to write this project  
 
-## Build
+## Installation
 
 ### Manual
 
