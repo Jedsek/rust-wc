@@ -420,6 +420,7 @@ dependencies = [
  "indicatif",
  "prettytable-rs",
  "rayon",
+ "unicode-width",
 ]
 
 [[package]]

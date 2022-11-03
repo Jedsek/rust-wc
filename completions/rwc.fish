@@ -2,7 +2,7 @@ complete -c rwc -n "__fish_use_subcommand" -s b -l bytes -d 'Print the byte coun
 complete -c rwc -n "__fish_use_subcommand" -s c -l chars -d 'Print the character counts'
 complete -c rwc -n "__fish_use_subcommand" -s w -l words -d 'Print the word counts'
 complete -c rwc -n "__fish_use_subcommand" -s l -l lines -d 'Print the line counts'
-complete -c rwc -n "__fish_use_subcommand" -s L -l longest-line -d 'Print the maximum line width (Chars)'
+complete -c rwc -n "__fish_use_subcommand" -s L -l longest-line -d 'Print the maximum line width (Unicode)'
 complete -c rwc -n "__fish_use_subcommand" -s h -l help -d 'Print help information'
 complete -c rwc -n "__fish_use_subcommand" -s V -l version -d 'Print version information'
 complete -c rwc -n "__fish_use_subcommand" -f -a "all" -d 'Enabled all available options'

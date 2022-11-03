@@ -73,7 +73,9 @@ fn calculate_counts(cli: &Cli, content: String) -> Counts {
             1 => cli.chars.then_some(content.chars().count()),
             2 => cli.words.then_some(content.split_whitespace().count()),
             3 => cli.lines.then_some(content.lines().count()),
-            4 => cli.longest_line.then_some(content.lines().map(|x| x.chars().count()).max().unwrap_or(0)),
+            4 => cli
+                .longest_line
+                .then_some(content.lines().map(unicode_width::UnicodeWidthStr::width).max().unwrap_or(0)),
             _ => None,
         })
         .flatten()

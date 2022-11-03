@@ -31,7 +31,7 @@ The file read from stdin will prefix with `Input/`, and the other will prefix wi
     #[arg(short, long)]
     pub lines: bool,
 
-    /// Print the maximum line width (Chars)
+    /// Print the maximum line width (Unicode)
     #[arg(short = 'L', long)]
     pub longest_line: bool,
 
@@ -73,7 +73,7 @@ impl Cli {
         self.chars.then(|| enabled_options.push("Chars"));
         self.words.then(|| enabled_options.push("Words"));
         self.lines.then(|| enabled_options.push("Lines"));
-        self.longest_line.then(|| enabled_options.push("Maximum line width (Chars)"));
+        self.longest_line.then(|| enabled_options.push("Maximum line width (Unicode)"));
 
         enabled_options
     }

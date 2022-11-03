@@ -23,8 +23,8 @@ _rwc() {
 '--words[Print the word counts]' \
 '-l[Print the line counts]' \
 '--lines[Print the line counts]' \
-'-L[Print the maximum line width (Chars)]' \
-'--longest-line[Print the maximum line width (Chars)]' \
+'-L[Print the maximum line width (Unicode)]' \
+'--longest-line[Print the maximum line width (Unicode)]' \
 '-h[Print help information]' \
 '--help[Print help information]' \
 '-V[Print version information]' \
