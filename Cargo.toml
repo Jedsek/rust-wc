@@ -1,7 +1,7 @@
 [package]
 name = "rust-wc"
 description = "A GNU/wc clone written in rust, which is faster when reading a large of big files"
-version = "0.3.3"
+version = "0.3.4"
 authors = ["jedsek <jedsek@qq.com>"]
 edition = "2021"
 readme = "README.md"
