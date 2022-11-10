@@ -28,12 +28,12 @@ incremental = false
 strip = true
 
 [dependencies]
-clap = {version = "4.0.18", features = ["derive"]}
+clap = {version = "4.0.22", features = ["derive"]}
 unicode-width = "0.1.10"
-indicatif = "0.17.1"
+indicatif = "0.17.2"
 prettytable-rs = "0.9.0"
 rayon = "1.5.3"
 
 [build-dependencies]
-clap = {version = "4.0.18", features = ["derive"]}
-clap_complete = "4.0.3"
+clap = {version = "4.0.22", features = ["derive"]}
+clap_complete = "4.0.5"
