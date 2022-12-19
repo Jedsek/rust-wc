@@ -1,18 +1,22 @@
 use clap::{ArgGroup, Parser, Subcommand};
 use std::path::PathBuf;
+use stripmargin::StripMargin;
 
 #[derive(Parser)]
 #[command(
-    author, version, about,
-    group(ArgGroup::new("options").multiple(true).required(true).args(&[ "bytes", "chars", "words", "lines", "longest_line"])),
-    subcommand_negates_reqs = true,
-    verbatim_doc_comment
+    author, version, about, verbatim_doc_comment, subcommand_negates_reqs = true,
+    group(
+        ArgGroup::new("options")
+            .multiple(true)
+            .required(true)
+            .args(&[ "bytes", "chars", "words", "lines", "longest_line"])
+    ),
 )]
 pub struct Cli {
-    #[arg(value_parser = check_path, value_name = "PATH", default_value = "-", help = 
-r#"The path(s) you should provide
-Note when without FILE or it is `-`, read standard input (stop inputting by `CTRL-D`)
-The file read from stdin will prefix with `Input/`, and the other will prefix with `./`"#)]
+    #[arg(value_parser = check_path, value_name = "PATH", default_value = "-", help = {r#"The path(s) you should provide
+        |Note when without FILE or it is `-`, read standard input (stop inputting by `CTRL-D`)
+        |The file read from stdin will prefix with `Input/`, and the other will prefix with `./`"#.strip_margin()}
+    )]
     pub paths: Vec<PathBuf>,
 
     /// Print the byte counts
