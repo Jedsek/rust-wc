@@ -4,7 +4,7 @@ use stripmargin::StripMargin;
 
 #[derive(Parser)]
 #[command(
-    author, version, about, verbatim_doc_comment, subcommand_negates_reqs = true,
+    author, version, about, subcommand_negates_reqs = true,
     group(
         ArgGroup::new("options")
             .multiple(true)
