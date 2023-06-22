@@ -16,7 +16,7 @@ What I had archived are as follows:
 It is super faster and prettier than `wc` command when reading a large of big files. (Thanks to `rayon`)  
 But it may be slower when reading a small numbers of small files due to time spending for runtime building.
 
-For the Chinese, you could view [my blog](https://jedsek.xyz/posts/rust-clap/intro) about using clap-rs to write this project  
+For Chinese, you could view [my blog](https://jedsek.xyz/posts/rust-clap/intro) about using clap-rs to write this project  
 
 ## Installation
 
